@@ -1,10 +1,10 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 
 app = FastAPI(root_path="/persons")
 
 @app.get('/persons')
-
-def home(request: Request):
+async def home(request: Request):
+  
     return  [
         
                 {   
@@ -33,7 +33,7 @@ def home(request: Request):
                     "Nombre":"Juan",
                     "Edad":"21",
                     "Ciudad":"Valdivia", 
-                    "root_path" : request.scope.get("root_path"),
+                    "root_path" : request.scope.get("root_path")
                     
                 }
                    
