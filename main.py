@@ -1,11 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
-app = FastAPI()
+app = FastAPI(root_path="/persons")
 
-@app.get('/')
+@app.get('/persons')
 
-def home():
+def home(request: Request):
     return  [
+        
                 {   
                     "id":"1",
                     "Nombre":"Jorge",
@@ -16,18 +17,27 @@ def home():
                 {
                     "id":"2",
                     "Nombre":"Jose",
-                    "Edad":"21",
-                    "Ciudad":"Santiago" 
+                    "Edad":"19",
+                    "Ciudad":"Concepcion" 
                 },
             
                 {
                     "id":"3",
                     "Nombre":"Andres",
-                    "Edad":"23",
-                    "Ciudad":"Santiago"
+                    "Edad":"20",
+                    "Ciudad":"Puerto Natales"
+                },
+                
+                  {
+                    "id":"4",
+                    "Nombre":"Juan",
+                    "Edad":"21",
+                    "Ciudad":"Valdivia", 
+                    "root_path" : request.scope.get("root_path"),
+                    
                 }
-            
+                   
             ]
-
-
+     
+    
 
